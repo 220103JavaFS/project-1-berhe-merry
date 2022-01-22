@@ -2,11 +2,14 @@ package com.revature.controllers;
 
 import io.javalin.Javalin;
 import io.javalin.http.Handler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * API of common paths used by both Employee and Finance Manager
  */
 public class CommonController extends Controller {
+    private static Logger log = LoggerFactory.getLogger(Controller.class);
 
     //TODO:should we use a ReimbDTO since Reimb does not have fields for the dates?
     private Handler viewTickets = (ctx) -> {

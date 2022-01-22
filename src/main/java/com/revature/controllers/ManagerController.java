@@ -2,11 +2,14 @@ package com.revature.controllers;
 
 import io.javalin.Javalin;
 import io.javalin.http.Handler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * API for Manager only controls
  */
 public class ManagerController extends Controller{
+    private static Logger log = LoggerFactory.getLogger(Controller.class);
 
     /**
      * This method is only used by the Finance Manager to filter requests by status
