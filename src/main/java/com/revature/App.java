@@ -2,6 +2,9 @@ package com.revature;
 import com.revature.controllers.*;
 import io.javalin.Javalin;
 
+/**
+ * Start of Javalin App
+ */
 public class App {
 
     private static Javalin app;
@@ -12,7 +15,7 @@ public class App {
             //c.accessManager(new AccessManagerConfigure());
         }).start();
 
-        configure(new ManagerController(), new CommonController());
+        configure(new ManagerController(), new EmployeeController(), new CommonController(), new LoginController());
     }
 
     public static void configure(Controller... controllers) {

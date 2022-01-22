@@ -3,6 +3,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * Util class to connecto to DB
+ */
 public class ConnectionUtil {
 
 //    public static void main(String... args) {

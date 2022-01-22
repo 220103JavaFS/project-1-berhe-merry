@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * API of common paths used by both Employee and Finance Manager
  */
 public class CommonController extends Controller {
-    private static Logger log = LoggerFactory.getLogger(Controller.class);
+    private Logger log = LoggerFactory.getLogger(Controller.class);
     private CommonService service = new CommonService();
 
     //TODO:should we use a ReimbDTO since Reimb does not have fields for the dates?

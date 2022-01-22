@@ -1,6 +1,17 @@
 package com.revature.service;
 
-public class EmployeeService {
+import com.revature.models.Reimb;
+import com.revature.repos.EmployeeDAO;
+import com.revature.repos.EmployeeDAOImpl;
 
-    public void addRequest(){}
+public class EmployeeService {
+    private EmployeeDAO dao = new EmployeeDAOImpl();
+
+    /**
+     * used by the Employee to submit a request for reimbursement
+     * @param reimb
+     */
+    public void addRequest(Reimb reimb){
+        //can use Validator
+    }
 }

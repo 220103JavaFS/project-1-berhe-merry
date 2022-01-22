@@ -3,23 +3,28 @@ package com.revature.models;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * This is the user's object
+ */
 public class Users {
 
     private String userName;
     private String firstName;
     private String lastName;
     private String email;
+    private String secret;
     private int roleID;
     private ArrayList<Reimb> reimbs;
 
     public Users() {
     }
 
-    public Users(String userName, String firstName, String lastName, String email, int roleID, ArrayList<Reimb> reimbs) {
+    public Users(String userName, String firstName, String lastName, String email, String secret, int roleID, ArrayList<Reimb> reimbs) {
         this.userName = userName;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.secret = secret;
         this.roleID = roleID;
         this.reimbs = reimbs;
     }
@@ -56,6 +61,14 @@ public class Users {
         this.email = email;
     }
 
+    public String getSecret() {
+        return secret;
+    }
+
+    public void setSecret(String secret) {
+        this.secret = secret;
+    }
+
     public int getRoleID() {
         return roleID;
     }
@@ -77,12 +90,12 @@ public class Users {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Users users = (Users) o;
-        return roleID == users.roleID && Objects.equals(userName, users.userName) && Objects.equals(firstName, users.firstName) && Objects.equals(lastName, users.lastName) && Objects.equals(email, users.email) && Objects.equals(reimbs, users.reimbs);
+        return roleID == users.roleID && Objects.equals(userName, users.userName) && Objects.equals(firstName, users.firstName) && Objects.equals(lastName, users.lastName) && Objects.equals(email, users.email) && Objects.equals(secret, users.secret) && Objects.equals(reimbs, users.reimbs);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userName, firstName, lastName, email, roleID, reimbs);
+        return Objects.hash(userName, firstName, lastName, email, secret, roleID, reimbs);
     }
 
     @Override
@@ -92,8 +105,9 @@ public class Users {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
-                ", roleID=" + roleID + '\'' +
-                "Reimbursements=" + reimbs.toString()+
-                "}";
+                ", secret='" + secret + '\'' +
+                ", roleID=" + roleID +
+                ", reimbs=" + reimbs +
+                '}';
     }
 }

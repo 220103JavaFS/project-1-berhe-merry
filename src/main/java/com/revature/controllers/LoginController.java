@@ -1,5 +1,6 @@
 package com.revature.controllers;
 import com.revature.models.UserDTO;
+import com.revature.service.LoginService;
 import io.javalin.Javalin;
 import io.javalin.http.Handler;
 import org.slf4j.Logger;
@@ -10,8 +11,8 @@ import org.slf4j.LoggerFactory;
  */
 public class LoginController extends Controller {
 
-    //private LogonService service = new LogonService();
-    private static Logger log = LoggerFactory.getLogger(Controller.class);
+    private LoginService service = new LoginService();
+    private Logger log = LoggerFactory.getLogger(Controller.class);
     public LoginController(){}
 
     private Handler login = (ctx) -> {

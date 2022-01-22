@@ -7,6 +7,10 @@ import java.sql.SQLException;
 
 public class EmployeeDAOImpl implements EmployeeDAO{
 
+    /**
+     * Method that will allow an employee to add a new request
+     * this should set the time of the request and set the statusID to Pending as the default
+     */
     @Override
     public void addRequest() {
         try (Connection conn = ConnectionUtil.getConnection()) {

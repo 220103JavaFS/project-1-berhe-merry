@@ -5,17 +5,12 @@ import java.sql.SQLException;
 
 public class ManagerDAOImpl implements ManagerDAO{
 
+    /**
+     * Manager can either approve or deny a request
+     * @param status is either APPROVE or DENY
+     */
     @Override
-    public void filterRequests() {
-        try (Connection conn = ConnectionUtil.getConnection()) {
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void editRequests() {
+    public void editRequests(String status) {
         try (Connection conn = ConnectionUtil.getConnection()) {
 
         } catch (SQLException e) {

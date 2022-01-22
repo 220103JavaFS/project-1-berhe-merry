@@ -2,11 +2,13 @@ package com.revature.service;
 
 import com.revature.models.Reimb;
 import com.revature.models.Users;
+import com.revature.repos.CommonDAO;
+import com.revature.repos.CommonDAOImpl;
 
 import java.util.ArrayList;
 
 public class CommonService<E> {
-
+    private CommonDAO dao = new CommonDAOImpl();
     /**
      * A manager or employee may use this
      * The role is checked first, if an employee, send to appropriate doa method

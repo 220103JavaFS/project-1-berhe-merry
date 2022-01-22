@@ -20,13 +20,25 @@ public class Argon2Hasher {
 //        System.out.println(verify("dfsdf", "222222"));
 //    }
 
+    /**
+     * Method used when storing a pw in the DB
+     * This method will has a user's pw
+     * @param password
+     * @return
+     */
     static String hash(String password) {
         return argon2.hash(2, 15360, 1, password.toCharArray());
     }
 
-    static boolean verify(String userID, String password) {
-        //loginDao will return the stored hashed pw
-        //return argon2.verify(loginDao.login(userID), password.toCharArray());
+    /**
+     * Used when a user logs in
+     * It takes the hashed pw from the DB and compares with the user's inputted pw
+     * @param userOutPW
+     * @param password
+     * @return true if pw's match, else false
+     */
+    static boolean verify(String userOutPW, String password) {
+        //return argon2.verify(userOutPW, password.toCharArray());
         //return argon2.verify(hash, password.toCharArray()); //test
         return true;
 

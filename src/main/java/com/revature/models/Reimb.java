@@ -3,6 +3,9 @@ package com.revature.models;
 import java.sql.Blob;
 import java.util.Objects;
 
+/**
+ * This is the reimbursement object
+ */
 public class Reimb {
     private double amount;
     private String timeSubmitted;
