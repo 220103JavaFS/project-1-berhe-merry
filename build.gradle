@@ -20,6 +20,9 @@ dependencies {
     implementation group: 'org.postgresql', name: 'postgresql', version: '42.3.1'
     // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.13.1'
+    // https://mvnrepository.com/artifact/de.mkammerer/argon2-jvm
+    implementation group: 'de.mkammerer', name: 'argon2-jvm', version: '2.11'
+
 }
 
 test {
