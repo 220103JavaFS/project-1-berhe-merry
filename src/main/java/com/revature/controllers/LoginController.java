@@ -18,8 +18,8 @@ public class LoginController extends Controller {
         UserDTO user = ctx.bodyAsClass(UserDTO.class);
         //log.info("User " + user.username + " is trying to login...");
 
-        //return user info from db, set the role in the session / web token
-        //service.login(user);
+        //return user info from db, set the role in the session / web token after the return
+        //Users user_out = service.login(user);
     };
 
     private Handler logout = (ctx) -> {
