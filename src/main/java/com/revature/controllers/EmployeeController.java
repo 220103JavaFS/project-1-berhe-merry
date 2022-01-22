@@ -1,5 +1,4 @@
 package com.revature.controllers;
-
 import io.javalin.Javalin;
 import io.javalin.http.Handler;
 
