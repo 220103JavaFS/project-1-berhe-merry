@@ -1,5 +1,6 @@
 package com.revature.models;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Users {
@@ -9,16 +10,18 @@ public class Users {
     private String lastName;
     private String email;
     private int roleID;
+    private ArrayList<Reimb> reimbs;
 
     public Users() {
     }
 
-    public Users(String userName, String firstName, String lastName, String email, int roleID) {
+    public Users(String userName, String firstName, String lastName, String email, int roleID, ArrayList<Reimb> reimbs) {
         this.userName = userName;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.roleID = roleID;
+        this.reimbs = reimbs;
     }
 
     public String getUserName() {
@@ -61,17 +64,25 @@ public class Users {
         this.roleID = roleID;
     }
 
+    public ArrayList<Reimb> getReimbs() {
+        return reimbs;
+    }
+
+    public void setReimbs(ArrayList<Reimb> reimbs) {
+        this.reimbs = reimbs;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Users users = (Users) o;
-        return roleID == users.roleID && Objects.equals(userName, users.userName) && Objects.equals(firstName, users.firstName) && Objects.equals(lastName, users.lastName) && Objects.equals(email, users.email);
+        return roleID == users.roleID && Objects.equals(userName, users.userName) && Objects.equals(firstName, users.firstName) && Objects.equals(lastName, users.lastName) && Objects.equals(email, users.email) && Objects.equals(reimbs, users.reimbs);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userName, firstName, lastName, email, roleID);
+        return Objects.hash(userName, firstName, lastName, email, roleID, reimbs);
     }
 
     @Override
@@ -81,7 +92,8 @@ public class Users {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
-                ", roleID=" + roleID +
-                '}';
+                ", roleID=" + roleID + '\'' +
+                "Reimbursements=" + reimbs.toString()+
+                "}";
     }
 }
