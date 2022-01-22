@@ -12,7 +12,7 @@ public class App {
             //c.accessManager(new AccessManagerConfigure());
         }).start();
 
-        configure(new ManagerController());
+        configure(new ManagerController(), new CommonController());
     }
 
     public static void configure(Controller... controllers) {
