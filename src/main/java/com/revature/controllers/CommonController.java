@@ -8,6 +8,7 @@ import io.javalin.http.Handler;
  */
 public class CommonController extends Controller {
 
+    //TODO:should we use a ReimbDTO since Reimb does not have fields for the dates?
     private Handler viewTickets = (ctx) -> {
 
     };
