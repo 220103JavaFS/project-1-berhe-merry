@@ -2,7 +2,11 @@ package com.revature.service;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
 
-
+/**
+ * Utility class to create a hash of user passwords that will then be stored in the DB
+ * Will also verify a user's inputted pw when a user tries to log in
+ * Uses Argon2id - recommended by OWASP for pw hashing
+ */
 public class Argon2Hasher {
 
     private static Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
