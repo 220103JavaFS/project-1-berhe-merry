@@ -52,4 +52,37 @@ final class Validator {
         return true;
     }
 
+    public static boolean isValidType(String type) {
+        if(type == null || type.trim()==""){
+            throw new MyException("No reimbursement type provided");
+        }
+        Reimb_Types[] types = Reimb_Types.values();
+        boolean isInTypes = false;
+        for (Reimb_Types t: types) {
+            if(type.equalsIgnoreCase(t.toString())){
+                isInTypes = true;
+            }
+        }
+        if(isInTypes) return true;
+        else throw new MyException("Invalid reimbursement type provided");
+    }
+
+    public static boolean isValidAmount(int amount) {
+        if(amount > 0) {
+            return true;
+        }
+        else {
+            throw new MyException("Invalid amount provided");
+        }
+    }
+
+    public static boolean isValidReimbID(int reimbID){
+        if(reimbID >= 0) {
+            return true;
+        }
+        else {
+            throw new MyException("Invalid reimbursement ID provided");
+        }
+    }
+
 }
