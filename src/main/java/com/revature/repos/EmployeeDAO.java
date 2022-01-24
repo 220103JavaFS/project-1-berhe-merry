@@ -1,6 +1,8 @@
 package com.revature.repos;
 
+import com.revature.models.Reimb;
+
 public interface EmployeeDAO {
 
-    void addRequest();
+    Reimb addRequest(Reimb reimb);
 }

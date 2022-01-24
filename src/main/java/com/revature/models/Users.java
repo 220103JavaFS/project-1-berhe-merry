@@ -7,7 +7,7 @@ import java.util.Objects;
  * This is the user's object
  */
 public class Users {
-
+    private int userID;
     private String userName;
     private String firstName;
     private String lastName;
@@ -19,7 +19,8 @@ public class Users {
     public Users() {
     }
 
-    public Users(String userName, String firstName, String lastName, String email, String secret, int roleID, ArrayList<Reimb> reimbs) {
+    public Users(int userID, String userName, String firstName, String lastName, String email, String secret, int roleID, ArrayList<Reimb> reimbs) {
+        this.userID = userID;
         this.userName = userName;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -27,6 +28,14 @@ public class Users {
         this.secret = secret;
         this.roleID = roleID;
         this.reimbs = reimbs;
+    }
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 
     public String getUserName() {
@@ -90,18 +99,19 @@ public class Users {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Users users = (Users) o;
-        return roleID == users.roleID && Objects.equals(userName, users.userName) && Objects.equals(firstName, users.firstName) && Objects.equals(lastName, users.lastName) && Objects.equals(email, users.email) && Objects.equals(secret, users.secret) && Objects.equals(reimbs, users.reimbs);
+        return userID == users.userID && roleID == users.roleID && Objects.equals(userName, users.userName) && Objects.equals(firstName, users.firstName) && Objects.equals(lastName, users.lastName) && Objects.equals(email, users.email) && Objects.equals(secret, users.secret) && Objects.equals(reimbs, users.reimbs);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userName, firstName, lastName, email, secret, roleID, reimbs);
+        return Objects.hash(userID, userName, firstName, lastName, email, secret, roleID, reimbs);
     }
 
     @Override
     public String toString() {
         return "Users{" +
-                "userName='" + userName + '\'' +
+                "userID=" + userID +
+                ", userName='" + userName + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +

@@ -7,6 +7,7 @@ import java.util.Objects;
  * This is the reimbursement object
  */
 public class Reimb {
+    private int id;
     private double amount;
     private String timeSubmitted;
     private String timeResolved;
@@ -20,7 +21,8 @@ public class Reimb {
     public Reimb() {
     }
 
-    public Reimb(double amount, String timeSubmitted, String timeResolved, String description, Blob receipt, double author, double resolver, int statusID, int typeID) {
+    public Reimb(int id, double amount, String timeSubmitted, String timeResolved, String description, Blob receipt, double author, double resolver, int statusID, int typeID) {
+        this.id = id;
         this.amount = amount;
         this.timeSubmitted = timeSubmitted;
         this.timeResolved = timeResolved;
@@ -30,6 +32,14 @@ public class Reimb {
         this.resolver = resolver;
         this.statusID = statusID;
         this.typeID = typeID;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public double getAmount() {
@@ -109,18 +119,19 @@ public class Reimb {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Reimb reimb = (Reimb) o;
-        return Double.compare(reimb.amount, amount) == 0 && Double.compare(reimb.author, author) == 0 && Double.compare(reimb.resolver, resolver) == 0 && statusID == reimb.statusID && typeID == reimb.typeID && Objects.equals(timeSubmitted, reimb.timeSubmitted) && Objects.equals(timeResolved, reimb.timeResolved) && Objects.equals(description, reimb.description) && Objects.equals(receipt, reimb.receipt);
+        return id == reimb.id && Double.compare(reimb.amount, amount) == 0 && Double.compare(reimb.author, author) == 0 && Double.compare(reimb.resolver, resolver) == 0 && statusID == reimb.statusID && typeID == reimb.typeID && Objects.equals(timeSubmitted, reimb.timeSubmitted) && Objects.equals(timeResolved, reimb.timeResolved) && Objects.equals(description, reimb.description) && Objects.equals(receipt, reimb.receipt);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(amount, timeSubmitted, timeResolved, description, receipt, author, resolver, statusID, typeID);
+        return Objects.hash(id, amount, timeSubmitted, timeResolved, description, receipt, author, resolver, statusID, typeID);
     }
 
     @Override
     public String toString() {
         return "Reimb{" +
-                "amount=" + amount +
+                "id=" + id +
+                ", amount=" + amount +
                 ", timeSubmitted='" + timeSubmitted + '\'' +
                 ", timeResolved='" + timeResolved + '\'' +
                 ", description='" + description + '\'' +

@@ -1,5 +1,6 @@
 package com.revature.repos;
 
+import com.revature.models.Reimb;
 import com.revature.util.ConnectionUtil;
 
 import java.sql.Connection;
@@ -12,11 +13,12 @@ public class EmployeeDAOImpl implements EmployeeDAO{
      * this should set the time of the request and set the statusID to Pending as the default
      */
     @Override
-    public void addRequest() {
+    public Reimb addRequest(Reimb reimb) {
         try (Connection conn = ConnectionUtil.getConnection()) {
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return null;
     }
 }

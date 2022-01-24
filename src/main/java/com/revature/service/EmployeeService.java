@@ -10,8 +10,11 @@ public class EmployeeService {
     /**
      * used by the Employee to submit a request for reimbursement
      * @param reimb
+     * @return the Reimb if successfully added, else null
      */
-    public void addRequest(Reimb reimb){
+    public Reimb addRequest(Reimb reimb){
         //can use Validator
+        //dao.addRequest(reimb);
+        return null;
     }
 }
