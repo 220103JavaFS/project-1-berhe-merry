@@ -1,0 +1,2 @@
+--CREATE DATABASE project1;
+CREATE TABLE 
