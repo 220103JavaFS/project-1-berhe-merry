@@ -20,6 +20,6 @@ public class LoginService {
     public Users login(UserDTO user){
         Users userOut = dao.login(user.username);
         //call Argon2Hasher.verify(userOut.getSecret(), user.password);
-        return new Users();
+        return null;
     }
 }

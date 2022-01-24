@@ -18,6 +18,6 @@ public class LoginDAOImpl implements LoginDAO{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return new Users();
+        return null;
     }
 }

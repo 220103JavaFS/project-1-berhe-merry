@@ -1,5 +1,7 @@
 package com.revature.controllers;
 
+import com.revature.models.EditTicketDTO;
+import com.revature.models.Reimb;
 import com.revature.models.Roles;
 import com.revature.service.ManagerService;
 import io.javalin.Javalin;
@@ -18,11 +20,15 @@ public class ManagerController extends Controller{
      * This method is only used by the Finance Manager to either approve or deny the request
      */
     private Handler editRequest = (ctx) -> {
-        //use a path param
-        //in postman
-        //http://localhost:8080/edit/:status
-        String status = ctx.pathParam("status");
-        service.editRequests(status);
+        EditTicketDTO editTicketDTO = ctx.bodyAsClass(EditTicketDTO.class);
+        Reimb reimb;
+        reimb = service.editRequests(editTicketDTO);
+        if(reimb == null){
+            ctx.status(400);
+        }
+        else {
+            ctx.status(200);
+        }
     };
 
     @Override
