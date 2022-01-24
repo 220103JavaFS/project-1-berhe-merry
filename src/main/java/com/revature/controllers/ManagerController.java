@@ -1,5 +1,6 @@
 package com.revature.controllers;
 
+import com.revature.models.Roles;
 import com.revature.service.ManagerService;
 import io.javalin.Javalin;
 import io.javalin.http.Handler;
@@ -26,6 +27,6 @@ public class ManagerController extends Controller{
 
     @Override
     public void addRoutes(Javalin app) {
-        app.put("/edit/{status}", editRequest);
+        app.put("/edit/{status}", editRequest, Roles.MANAGER);
     }
 }

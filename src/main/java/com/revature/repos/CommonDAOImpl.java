@@ -28,7 +28,7 @@ public class CommonDAOImpl implements CommonDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return new ArrayList<>();
+        return null;
     }
 
     /**
@@ -43,6 +43,6 @@ public class CommonDAOImpl implements CommonDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return new ArrayList<>();
+        return null;
     }
 }

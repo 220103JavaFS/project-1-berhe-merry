@@ -1,5 +1,6 @@
 package com.revature.controllers;
 import com.revature.models.Reimb;
+import com.revature.models.Roles;
 import com.revature.service.EmployeeService;
 import io.javalin.Javalin;
 import io.javalin.http.Handler;
@@ -25,6 +26,6 @@ public class EmployeeController extends Controller {
 
     @Override
     public void addRoutes(Javalin app) {
-        app.post("/addRequest", addRequest);
+        app.post("/addRequest", addRequest, Roles.EMPLOYEE);
     }
 }

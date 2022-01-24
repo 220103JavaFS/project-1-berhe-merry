@@ -16,7 +16,7 @@ public class Argon2Hasher {
 //    public static void main(String... args) {
 //        hash = hash("123dfs");
 //        System.out.println(hash);
-//        System.out.println(verify("dfdfsd", "123dfs"));
+//        System.out.println(verify(hash, "123dfs"));
 //        System.out.println(verify("dfsdf", "222222"));
 //    }
 
@@ -38,9 +38,8 @@ public class Argon2Hasher {
      * @return true if pw's match, else false
      */
     static boolean verify(String userOutPW, String password) {
-        //return argon2.verify(userOutPW, password.toCharArray());
-        //return argon2.verify(hash, password.toCharArray()); //test
-        return true;
+        return argon2.verify(userOutPW, password.toCharArray());
+        //return true;
 
     }
 }

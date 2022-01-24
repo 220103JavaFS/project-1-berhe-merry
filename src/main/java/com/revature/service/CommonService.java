@@ -1,6 +1,7 @@
 package com.revature.service;
 
 import com.revature.models.Reimb;
+import com.revature.models.TicketQueryDTO;
 import com.revature.models.Users;
 import com.revature.repos.CommonDAO;
 import com.revature.repos.CommonDAOImpl;
@@ -11,18 +12,29 @@ public class CommonService<E> {
     private CommonDAO dao = new CommonDAOImpl();
     /**
      * A manager or employee may use this
+     * An employee can choose to view all, pending, denied, and approved reimbursements that belongs to the employee.
+     * A manager can choose to view all, pending, denied, and approved reimbursements of all employees.
      * The role is checked first, if an employee, send to appropriate doa method
      * else the user is a manager and can query all employees
-     * @param userID
-     * @param role
-     * @param queryType
-     * @return
+     * @param ticketQueryDTO
+     * @return An arrayList of Reimbursements
      */
-    public ArrayList viewTickets(int userID, String role, String queryType){
-        //if(role.equalsIgnoreCase("employee"))
-            //return dao.viewAll(userID, queryType); //for an employee
+    public ArrayList viewTickets(TicketQueryDTO ticketQueryDTO){
+        //if(ticketQuery.role.equalsIgnoreCase("employee"))
+            //return dao.viewAll(ticketQuery.userID, ticketQuery.queryType); //for an employee
         //else
-            //return dao.viewAll(queryType); //for manager
-        return new ArrayList<>();
+            //return dao.viewAll(ticketQuery.queryType); //for manager
+        return null;
+    }
+
+    /**
+     * Used by the manager to query tickets for a specific employee. The manager can view all, pending, denied, and
+     * approved reimbursements.
+     * @param ticketQueryDTO
+     * @return an arrayList of Reimbursements
+     */
+    public ArrayList viewEmployeeTickets(TicketQueryDTO ticketQueryDTO){
+        //return dao.viewAll(ticketQuery.userID, ticketQuery.queryType);
+        return null;
     }
 }

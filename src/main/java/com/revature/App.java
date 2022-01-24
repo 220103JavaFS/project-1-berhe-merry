@@ -12,7 +12,7 @@ public class App {
     public static void main(String[] args) {
 
         app = Javalin.create( c -> {
-            //c.accessManager(new AccessManagerConfigure());
+            c.accessManager(new AccessManagerConfigure());
         }).start();
 
         configure(new ManagerController(), new EmployeeController(), new CommonController(), new LoginController());
