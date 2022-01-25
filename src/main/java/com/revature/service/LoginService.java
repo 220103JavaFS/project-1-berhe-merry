@@ -11,8 +11,10 @@ public class LoginService {
     private LoginDAO dao;
 
     public LoginService() {
+        dao = new LoginDAOImpl();
     }
 
+    //Constructor used in testing
     public LoginService(LoginDAO dao) {
         this.dao = dao;
     }
