@@ -7,7 +7,15 @@ import com.revature.repos.LoginDAOImpl;
 
 public class LoginService {
 
-    private LoginDAO dao = new LoginDAOImpl();
+    //private LoginDAO dao = new LoginDAOImpl();
+    private LoginDAO dao;
+
+    public LoginService() {
+    }
+
+    public LoginService(LoginDAO dao) {
+        this.dao = dao;
+    }
 
     /**
      * Called by controller layer, takes a username and password.
@@ -19,7 +27,11 @@ public class LoginService {
      */
     public Users login(UserDTO user){
         Users userOut = dao.login(user.username);
-        //call Argon2Hasher.verify(userOut.getSecret(), user.password);
+        if(userOut != null) {
+            if (Argon2Hasher.verify(userOut.getSecret(), user.password)) {
+                return userOut;
+            }
+        }
         return null;
     }
 }
