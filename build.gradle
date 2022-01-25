@@ -23,6 +23,9 @@ dependencies {
     // https://mvnrepository.com/artifact/de.mkammerer/argon2-jvm
     implementation group: 'de.mkammerer', name: 'argon2-jvm', version: '2.11'
 
+// https://mvnrepository.com/artifact/org.mockito/mockito-junit-jupiter
+    testImplementation group: 'org.mockito', name: 'mockito-junit-jupiter', version: '4.2.0'
+
 }
 
 test {
