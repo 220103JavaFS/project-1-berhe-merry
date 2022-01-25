@@ -5,7 +5,16 @@ import com.revature.repos.EmployeeDAO;
 import com.revature.repos.EmployeeDAOImpl;
 
 public class EmployeeService {
-    private EmployeeDAO dao = new EmployeeDAOImpl();
+    //private EmployeeDAO dao = new EmployeeDAOImpl();
+
+private  EmployeeDAO empDAO;
+    public EmployeeService() {
+        empDAO=new EmployeeDAOImpl();
+    }
+
+    public EmployeeService(EmployeeDAO empDAO) {
+        this.empDAO = empDAO;
+    }
 
     /**
      * used by the Employee to submit a request for reimbursement
@@ -14,7 +23,10 @@ public class EmployeeService {
      */
     public Reimb addRequest(Reimb reimb){
         //can use Validator
-        //dao.addRequest(reimb);
-        return null;
+       Reimb rr=empDAO.addRequest(reimb);
+       if(rr==null) {
+           return  null;
+       }
+        return rr;
     }
 }
