@@ -8,15 +8,15 @@ import java.sql.SQLException;
  */
 public class ConnectionUtil {
 
-//    public static void main(String... args) {
-//        try {
-//            getConnection();
-//            System.out.println("Connected successfully");
-//        } catch (SQLException e) {
-//            System.out.println("Connection failed ");
-//            e.printStackTrace();
-//        }
-//    }
+    public static void main(String... args) {
+        try {
+            getConnection();
+            System.out.println("Connected successfully");
+        } catch (SQLException e) {
+            System.out.println("Connection failed ");
+            e.printStackTrace();
+        }
+    }
 
 
     //this will connect to our DB
@@ -26,7 +26,7 @@ public class ConnectionUtil {
         } catch(ClassNotFoundException e) {
             e.printStackTrace();
         }
-        String url = "jdbc:postgresql://";
+        String url = "jdbc:postgresql://javafs220103.cludzulbnky0.us-east-1.rds.amazonaws.com:5432/ersdb";
         String username = System.getenv("sqlUserName");
         String password = System.getenv("sqlPassword");
         return DriverManager.getConnection(url, username, password);
