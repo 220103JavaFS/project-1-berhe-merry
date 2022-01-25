@@ -6,7 +6,15 @@ import com.revature.repos.ManagerDAO;
 import com.revature.repos.ManagerDAOImpl;
 
 public class ManagerService {
-    private ManagerDAO dao = new ManagerDAOImpl();
+    private ManagerDAO dao;
+
+    public ManagerService() {
+        dao= new ManagerDAOImpl();
+    }
+
+    public ManagerService(ManagerDAO dao) {
+        this.dao = dao;
+    }
 
     /**
      * Allows a manager to edit a request
@@ -14,7 +22,12 @@ public class ManagerService {
      * @return the edited request with updated status
      */
     public Reimb editRequests(EditTicketDTO editTicketDTO){
-        dao.editRequests(editTicketDTO);
+
+        Reimb edit= dao.editRequests(editTicketDTO);
+        if(edit!=null)
+        {
+            return edit;
+        }
         return null;
     }
 }
