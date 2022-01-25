@@ -1,19 +1,30 @@
-Create database ERSDB;
+--Create database ERSDB;
 Create table if not exists ERS_REIMBURSEMENT_STATUS (
-REIMB_Status_Id int PRIMARY KEY,
-REIMB_Status VARCHAR(10) NOT null);
+REIMB_Status_Id SERIAL PRIMARY KEY,
+REIMB_Status VARCHAR(10));
+
+--DROP TABLE ERS_REIMBURSEMENT_STATUS, ERS_REIMBURSEMENT_TYPE, ERS_USER_ROLES, ERS_USERS,ERS_Reimbursement;
+
+INSERT INTO ERS_REIMBURSEMENT_STATUS(REIMB_Status)
+VALUES ('PENDING'), ('APPROVED'), ('DENIED');
 
 Create table if not exists ERS_REIMBURSEMENT_TYPE (
-REIMB_Type_Id int primary key ,
-REIMB_Type VARCHAR(10) NOT null);
+REIMB_Type_Id SERIAL primary key ,
+REIMB_Type VARCHAR(10));
+
+INSERT INTO ERS_REIMBURSEMENT_TYPE(reimb_type)
+VALUES ('LODGING'), ('TRAVEL'), ('FOOD'), ('OTHER');
 
 
 Create table if not exists ERS_USER_ROLES (
-ERS_USER_ROLE_ID int primary key ,
+ERS_USER_ROLE_ID SERIAL primary key ,
 ERS_USER_ROLE VARCHAR(10) NOT null);
 
+INSERT INTO ERS_USER_ROLES(ers_user_role)
+VALUES ('EMPLOYEE'), ('MANAGER');
+
 Create table if not exists ERS_USERS (
-ERS_Users_Id int primary key ,
+ERS_Users_Id SERIAL primary key ,
 ERS_Username Varchar(50) UNIQUE,
 ERS_Password Varchar(50),
 ERS_FirstName Varchar(100),
@@ -31,5 +42,5 @@ REIMB_Receipt bytea,
 REIMB_Author int REFERENCES ERS_User_Roles (ERS_USER_ROLE_ID) ON DELETE CASCADE ,
 REIMB_Resolver int REFERENCES ERS_User_Roles (ERS_USER_ROLE_ID) ON DELETE CASCADE ,
 REIMB_Status_Id int REFERENCES  ERS_REIMBURSEMENT_STATUS (REIMB_Status_Id ) ON DELETE CASCADE ,
-REIMB_Type_Id int REFERENCES ERS_REIMBURSEMENT_Type ( REIMB_Type_Id) ON DELETE CASCADE 
-) 
+REIMB_Type_Id int REFERENCES ERS_REIMBURSEMENT_Type ( REIMB_Type_Id) ON DELETE CASCADE
+)
