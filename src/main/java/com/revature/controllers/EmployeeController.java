@@ -19,8 +19,17 @@ public class EmployeeController extends Controller {
      * Automatic status will be pending when submitted
      */
     private Handler addRequest = (ctx) -> {
-        Reimb reimb = ctx.bodyAsClass(Reimb.class);
-        service.addRequest(reimb);
+        if(ctx.req.getSession(false)!=null) {
+            Reimb reimb = ctx.bodyAsClass(Reimb.class);
+            reimb = service.addRequest(reimb);
+            if(reimb == null) {
+                ctx.status(500);
+            } else {
+                ctx.status(201);
+            }
+        } else {
+            ctx.status(401);
+        }
 
     };
 

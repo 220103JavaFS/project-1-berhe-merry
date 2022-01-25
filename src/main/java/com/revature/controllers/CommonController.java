@@ -26,20 +26,23 @@ public class CommonController extends Controller {
      * These values will be stored in a DTO object
      */
     private Handler viewTickets = (ctx) -> {
+        if(ctx.req.getSession(false)!=null) {
+            TicketQueryDTO ticketQueryDTO = ctx.bodyAsClass(TicketQueryDTO.class);
+            ArrayList<Reimb> reimbs;
 
-        TicketQueryDTO ticketQueryDTO = ctx.bodyAsClass(TicketQueryDTO.class);
-        ArrayList<Reimb> reimbs;
+            if (ticketQueryDTO.role.equalsIgnoreCase("manager") && ticketQueryDTO.userID != -1) {
+                reimbs = service.viewEmployeeTickets(ticketQueryDTO);
+            } else {
+                reimbs = service.viewTickets(ticketQueryDTO);
+            }
 
-        if(ticketQueryDTO.role.equalsIgnoreCase("manager") && ticketQueryDTO.userID!=-1) {
-            reimbs = service.viewEmployeeTickets(ticketQueryDTO);
+            if (reimbs == null) {
+                ctx.status(500);
+            } else {
+                ctx.status(200);
+            }
         } else {
-            reimbs = service.viewTickets(ticketQueryDTO);
-        }
-
-        if(reimbs == null) {
-            ctx.status(500);
-        } else {
-            ctx.status(200);
+            ctx.status(401);
         }
     };
 

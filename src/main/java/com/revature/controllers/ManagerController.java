@@ -20,14 +20,17 @@ public class ManagerController extends Controller{
      * This method is only used by the Finance Manager to either approve or deny the request
      */
     private Handler editRequest = (ctx) -> {
-        EditTicketDTO editTicketDTO = ctx.bodyAsClass(EditTicketDTO.class);
-        Reimb reimb;
-        reimb = service.editRequests(editTicketDTO);
-        if(reimb == null){
-            ctx.status(400);
-        }
-        else {
-            ctx.status(200);
+        if(ctx.req.getSession(false)!=null) {
+            EditTicketDTO editTicketDTO = ctx.bodyAsClass(EditTicketDTO.class);
+            Reimb reimb;
+            reimb = service.editRequests(editTicketDTO);
+            if (reimb == null) {
+                ctx.status(400);
+            } else {
+                ctx.status(200);
+            }
+        } else {
+            ctx.status(401);
         }
     };
 
