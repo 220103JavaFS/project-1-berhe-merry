@@ -1,14 +1,15 @@
-package com.revature.services;
+package com.revature.service;
 
 import com.revature.models.UserDTO;
 import com.revature.models.Users;
 import com.revature.repos.LoginDAO;
-import com.revature.service.LoginService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
+
+import java.util.function.BooleanSupplier;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -31,7 +32,7 @@ public class LoginServiceTest {
     @Test
     public void testLoginSuccess() {
 
-        //assertTrue(loginTest.login(testUser));
+        assertNull(loginTest.login(testUser));
     }
 
     @Test
