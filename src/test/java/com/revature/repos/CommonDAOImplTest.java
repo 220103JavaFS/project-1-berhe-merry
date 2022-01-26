@@ -25,4 +25,13 @@ public class CommonDAOImplTest {
         queryType = "DENIED";
         assertEquals(true,dao.viewAll(userID, queryType).size() == 0);
     }
+
+    @Test
+    @DisplayName("Test when a manager would like to look at all of the employees' requests")
+    void viewAllTestQueries(){
+        queryType = "PEN";
+        assertEquals(true,dao.viewAll(userID, queryType).size() == 0);
+    }
+
+
 }

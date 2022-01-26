@@ -13,13 +13,14 @@ public class Users {
     private String lastName;
     private String email;
     private String secret;
-    private int roleID;
+    private String roleID;
     private ArrayList<Reimb> reimbs;
 
     public Users() {
     }
 
-    public Users(int userID, String userName, String firstName, String lastName, String email, String secret, int roleID, ArrayList<Reimb> reimbs) {
+    public Users(int userID, String userName, String firstName, String lastName, String email, String secret,
+                 String roleID, ArrayList<Reimb> reimbs) {
         this.userID = userID;
         this.userName = userName;
         this.firstName = firstName;
@@ -78,11 +79,11 @@ public class Users {
         this.secret = secret;
     }
 
-    public int getRoleID() {
+    public String getRoleID() {
         return roleID;
     }
 
-    public void setRoleID(int roleID) {
+    public void setRoleID(String roleID) {
         this.roleID = roleID;
     }
 
@@ -99,7 +100,7 @@ public class Users {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Users users = (Users) o;
-        return userID == users.userID && roleID == users.roleID && Objects.equals(userName, users.userName) && Objects.equals(firstName, users.firstName) && Objects.equals(lastName, users.lastName) && Objects.equals(email, users.email) && Objects.equals(secret, users.secret) && Objects.equals(reimbs, users.reimbs);
+        return userID == users.userID && Objects.equals(userName, users.userName) && Objects.equals(firstName, users.firstName) && Objects.equals(lastName, users.lastName) && Objects.equals(email, users.email) && Objects.equals(secret, users.secret) && Objects.equals(roleID, users.roleID) && Objects.equals(reimbs, users.reimbs);
     }
 
     @Override

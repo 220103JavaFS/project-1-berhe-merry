@@ -4,10 +4,7 @@ import com.revature.models.Reimb;
 import com.revature.models.Users;
 import com.revature.util.ConnectionUtil;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -86,6 +83,38 @@ public class CommonDAOImpl implements CommonDAO {
     @Override
     public ArrayList<Users> viewAll(String queryType) {
         try (Connection conn = ConnectionUtil.getConnection()) {
+            String sql;
+
+//            if(queryType.equalsIgnoreCase("all")) {
+                sql = "SELECT * FROM ers_users " +
+                        "INNER JOIN ers_user_roles ON ers_users.user_role_id = ers_user_roles.ers_user_role_id;";
+//            } else {
+//                sql = "SELECT * FROM ers_users " +
+//                        "INNER JOIN ers_user_roles ON ers_users.user_role_id = ers_user_roles.ers_user_role_id;";
+//            }
+
+            Statement statement = conn.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+
+            ArrayList<Users> users = new ArrayList<>();
+            Users u = new Users();
+            while(result.next()) {
+                u.setUserID(result.getInt("ers_users_id"));
+                u.setUserName(result.getString("ers_username"));
+                u.setFirstName(result.getString("ers_firstname"));
+                u.setLastName(result.getString("ers_lastname"));
+                u.setEmail(result.getString("ers_email"));
+                u.setRoleID(result.getString("ers_user_role"));
+                u.setReimbs(new ArrayList<>());
+                users.add(u);
+            }
+
+            //now go through each user in the users array, and append their reimbursements
+            for(Users r: users) {
+                ArrayList<Reimb> reimbs = viewAll(r.getUserID(), queryType);
+                r.setReimbs(reimbs);
+            }
+            return users;
 
         } catch (SQLException e) {
             e.printStackTrace();
