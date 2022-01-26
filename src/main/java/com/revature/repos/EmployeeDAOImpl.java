@@ -5,6 +5,7 @@ import com.revature.util.ConnectionUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class EmployeeDAOImpl implements EmployeeDAO{
@@ -16,22 +17,28 @@ public class EmployeeDAOImpl implements EmployeeDAO{
     @Override
     public Reimb addRequest(Reimb reimb) {
         try (Connection conn = ConnectionUtil.getConnection()) {
+            String sql =
+                    "INSERT INTO ers_reimbursement (reimb_amount, reimb_submitted, reimb_author, reimb_type_id) " +
+                            "VALUES ( CAST (? AS NUMERIC), (SELECT CURRENT_TIMESTAMP), CAST (? AS INTEGER) , CAST (? " +
+                            "AS INTEGER) ) RETURNING *;";
 
-String sql="insert into ers_reimbursement (reimb_id, reimb_amount, reimb_submitted, reimb_description, reimb_author, reimb_resolver, reimb_status_id, reimb_type_id )" +
-        "values(1,(CAST ? AS INT),(SELECT CURRENT_TIMESTAMP),?,(CAST ? AS INT),(CAST ? AS INT),(CAST ? AS INT),(CAST ? AS INT)); ";
             PreparedStatement statement= conn.prepareStatement(sql);
-            int count=0;
-           // (CAST ? AS INT)
-            statement.setString(++count, Double.toString(reimb.getAmount()));
-            statement.setString(++count, reimb.getDescription());
-           // statement.setString(++count, reimb.getReceipt());
-            statement.setString(++count, Double.toString(reimb.getAuthor()));
-            statement.setString(++count, Double.toString(reimb.getResolver()));
-            statement.setString(++count, Double.toString(reimb.getStatusID()));
-            statement.setString(++count, Double.toString(reimb.getTypeID()));
-            statement.execute();
-            return reimb;
 
+            //TODO : add description and receipt...
+            int count=0;
+            statement.setString(++count, Double.toString(reimb.getAmount()));
+            statement.setString(++count, Integer.toString(reimb.getAuthor()));
+            statement.setString(++count, Integer.toString(reimb.getTypeID()));
+            ResultSet result = statement.executeQuery();
+            Reimb reimb_added = null;
+            if(result.next()){
+                reimb_added = new Reimb(result.getInt("reimb_id"), result.getDouble("reimb_amount"),
+                        result.getString("reimb_submitted"), result.getString("reimb_resolved"),
+                        result.getString("reimb_description"), result.getBlob("reimb_receipt"),
+                        result.getInt("reimb_author"), result.getInt("reimb_resolver"),
+                        result.getInt("reimb_status_id"), result.getInt("reimb_type_id"));
+            }
+            	return reimb_added;
         } catch (SQLException e) {
             e.printStackTrace();
         }

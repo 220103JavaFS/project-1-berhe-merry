@@ -26,9 +26,9 @@ public class ConnectionUtil {
         } catch(ClassNotFoundException e) {
             e.printStackTrace();
         }
-        //String url = "jdbc:postgresql://javafs220103.cludzulbnky0.us-east-1.rds.amazonaws.com:5432/ersdb";
+        String url = "jdbc:postgresql://javafs220103.cludzulbnky0.us-east-1.rds.amazonaws.com:5432/ersdb";
 
-        String url = "jdbc:postgresql://javafs220103.c8iqszwihdjq.us-east-1.rds.amazonaws.com:5432/ersdb";
+        //String url = "jdbc:postgresql://javafs220103.c8iqszwihdjq.us-east-1.rds.amazonaws.com:5432/ersdb";
 
         String username = System.getenv("sqlUserName");
         String password = System.getenv("sqlPassword");
