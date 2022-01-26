@@ -9,7 +9,16 @@ import com.revature.repos.CommonDAOImpl;
 import java.util.ArrayList;
 
 public class CommonService<E> {
-    private CommonDAO dao = new CommonDAOImpl();
+    private CommonDAO dao;
+
+    public CommonService() {
+        dao = new CommonDAOImpl();
+    }
+
+    public CommonService(CommonDAO dao) {
+        this.dao = dao;
+    }
+
     /**
      * A manager or employee may use this
      * An employee can choose to view all, pending, denied, and approved reimbursements that belongs to the employee.

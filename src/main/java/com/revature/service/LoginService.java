@@ -7,7 +7,6 @@ import com.revature.repos.LoginDAOImpl;
 
 public class LoginService {
 
-    //private LoginDAO dao = new LoginDAOImpl();
     private LoginDAO dao;
 
     public LoginService() {
