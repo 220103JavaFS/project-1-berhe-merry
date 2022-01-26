@@ -1,5 +1,6 @@
 package com.revature.service;
 
+import com.revature.exceptions.MyException;
 import com.revature.models.Reimb;
 import com.revature.repos.EmployeeDAO;
 import com.revature.repos.EmployeeDAOImpl;
@@ -23,10 +24,17 @@ private  EmployeeDAO empDAO;
      */
     public Reimb addRequest(Reimb reimb){
         //can use Validator
-       Reimb rr=empDAO.addRequest(reimb);
-       if(rr==null) {
-           return  null;
-       }
-        return rr;
+        try {
+            Validator.isValidAmount(reimb.getAmount());
+            Validator.isValidUserId()
+            Reimb rr = empDAO.addRequest(reimb);
+            if (rr == null) {
+                return null;
+            }
+            return rr;
+        } catch (MyException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 }

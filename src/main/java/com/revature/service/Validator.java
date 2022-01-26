@@ -67,7 +67,7 @@ final class Validator {
         else throw new MyException("Invalid reimbursement type provided");
     }
 
-    public static boolean isValidAmount(int amount) {
+    public static boolean isValidAmount(double amount) {
         if(amount > 0) {
             return true;
         }
