@@ -39,8 +39,8 @@ final class Validator {
         return true;
     }
 
-    public static boolean isValidUserId(String userId) {
-        if(isEmpty(userId)) {
+    public static boolean isValidUserId(int userId) {
+        if(userId >= 0) {
             throw new MyException("No userId provided");
         }
         return true;

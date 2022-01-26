@@ -26,7 +26,8 @@ private  EmployeeDAO empDAO;
         //can use Validator
         try {
             Validator.isValidAmount(reimb.getAmount());
-            Validator.isValidUserId()
+            Validator.isValidUserId(reimb.getId());
+            //Validator.isValidType(reimb.getTypeID()); //TODO
             Reimb rr = empDAO.addRequest(reimb);
             if (rr == null) {
                 return null;

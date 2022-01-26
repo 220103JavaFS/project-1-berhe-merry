@@ -1,5 +1,6 @@
 package com.revature.service;
 
+import com.revature.exceptions.MyException;
 import com.revature.models.UserDTO;
 import com.revature.models.Users;
 import com.revature.repos.LoginDAO;
@@ -27,11 +28,18 @@ public class LoginService {
      * @return valid User in database else empty user
      */
     public Users login(UserDTO user){
-        Users userOut = dao.login(user.username);
-        if(userOut != null) {
-            if (Argon2Hasher.verify(userOut.getSecret(), user.password)) {
-                return userOut;
+        try {
+            Validator.isValidSecret(user.username); //reusing...
+            Validator.isValidSecret(user.password);
+            Users userOut = dao.login(user.username);
+            if (userOut != null) {
+                if (Argon2Hasher.verify(userOut.getSecret(), user.password)) {
+                    return userOut;
+                }
             }
+            return null;
+        } catch (MyException e) {
+            System.out.println(e.getMessage());
         }
         return null;
     }
