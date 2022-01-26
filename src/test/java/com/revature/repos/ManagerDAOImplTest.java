@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 
 import java.sql.Blob;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 public class ManagerDAOImplTest {
     private ManagerDAO managerDAO = new ManagerDAOImpl();
     private EditTicketDTO editTicketDTO;
@@ -15,7 +17,10 @@ public class ManagerDAOImplTest {
     @Test
     @DisplayName("Manager is able to successfully edit a reimbursement, will return a Reimb")
     void editTestSuccess(){
-        managerDAO.editRequests(editTicketDTO);
+        editTicketDTO = new EditTicketDTO();
+        editTicketDTO.status = 2; //2==approved, 3==denied
+        editTicketDTO.reimbID = 7;
+        assertNotNull(managerDAO.editRequests(editTicketDTO));
     }
 
 }
