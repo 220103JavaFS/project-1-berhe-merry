@@ -18,7 +18,7 @@ public class EmployeeDAOImplTest {
         reimb = new Reimb();
         reimb.setAmount(400.02);
         reimb.setAuthor(1);
-        reimb.setTypeID(1);
+        //reimb.setTypeID(1);
         assertNotNull(employeeDAO.addRequest(reimb));
     }
 

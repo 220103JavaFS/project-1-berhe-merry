@@ -15,14 +15,14 @@ public class Reimb {
     private Blob receipt;
     private int author;
     private int resolver;
-    private int statusID;
-    private int typeID;
+    private String statusID;
+    private String typeID;
 
     public Reimb() {
     }
 
     public Reimb(int id, double amount, String timeSubmitted, String timeResolved, String description, Blob receipt,
-                 int author, int resolver, int statusID, int typeID) {
+                 int author, int resolver, String statusID, String typeID) {
         this.id = id;
         this.amount = amount;
         this.timeSubmitted = timeSubmitted;
@@ -99,19 +99,19 @@ public class Reimb {
         this.resolver = resolver;
     }
 
-    public int getStatusID() {
+    public String getStatusID() {
         return statusID;
     }
 
-    public void setStatusID(int statusID) {
+    public void setStatusID(String statusID) {
         this.statusID = statusID;
     }
 
-    public int getTypeID() {
+    public String getTypeID() {
         return typeID;
     }
 
-    public void setTypeID(int typeID) {
+    public void setTypeID(String typeID) {
         this.typeID = typeID;
     }
 
@@ -120,7 +120,7 @@ public class Reimb {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Reimb reimb = (Reimb) o;
-        return id == reimb.id && Double.compare(reimb.amount, amount) == 0 && Integer.compare(reimb.author, author) == 0 && Integer.compare(reimb.resolver, resolver) == 0 && statusID == reimb.statusID && typeID == reimb.typeID && Objects.equals(timeSubmitted, reimb.timeSubmitted) && Objects.equals(timeResolved, reimb.timeResolved) && Objects.equals(description, reimb.description) && Objects.equals(receipt, reimb.receipt);
+        return id == reimb.id && Double.compare(reimb.amount, amount) == 0 && author == reimb.author && resolver == reimb.resolver && Objects.equals(timeSubmitted, reimb.timeSubmitted) && Objects.equals(timeResolved, reimb.timeResolved) && Objects.equals(description, reimb.description) && Objects.equals(receipt, reimb.receipt) && Objects.equals(statusID, reimb.statusID) && Objects.equals(typeID, reimb.typeID);
     }
 
     @Override

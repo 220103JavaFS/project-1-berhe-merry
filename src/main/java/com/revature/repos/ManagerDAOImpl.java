@@ -25,11 +25,11 @@ public class ManagerDAOImpl implements ManagerDAO{
             ResultSet result = statement.executeQuery();
             Reimb reimb = null;
             if(result.next()) {
-                reimb = new Reimb(result.getInt("reimb_id"), result.getDouble("reimb_amount"),
-                        result.getString("reimb_submitted"), result.getString("reimb_resolved"),
-                        result.getString("reimb_description"), result.getBlob("reimb_receipt"),
-                        result.getInt("reimb_author"), result.getInt("reimb_resolver"),
-                        result.getInt("reimb_status_id"), result.getInt("reimb_type_id"));
+//                reimb = new Reimb(result.getInt("reimb_id"), result.getDouble("reimb_amount"),
+//                        result.getString("reimb_submitted"), result.getString("reimb_resolved"),
+//                        result.getString("reimb_description"), result.getBlob("reimb_receipt"),
+//                        result.getInt("reimb_author"), result.getInt("reimb_resolver"),
+//                        result.getInt("reimb_status_id"), result.getInt("reimb_type_id"));
             }
             return reimb;
         } catch (SQLException e) {

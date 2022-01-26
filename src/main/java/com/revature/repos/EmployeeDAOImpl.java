@@ -28,15 +28,16 @@ public class EmployeeDAOImpl implements EmployeeDAO{
             int count=0;
             statement.setString(++count, Double.toString(reimb.getAmount()));
             statement.setString(++count, Integer.toString(reimb.getAuthor()));
-            statement.setString(++count, Integer.toString(reimb.getTypeID()));
+            //statement.setString(++count, Integer.toString(reimb.getTypeID()));
             ResultSet result = statement.executeQuery();
             Reimb reimb_added = null;
             if(result.next()){
-                reimb_added = new Reimb(result.getInt("reimb_id"), result.getDouble("reimb_amount"),
-                        result.getString("reimb_submitted"), result.getString("reimb_resolved"),
-                        result.getString("reimb_description"), result.getBlob("reimb_receipt"),
-                        result.getInt("reimb_author"), result.getInt("reimb_resolver"),
-                        result.getInt("reimb_status_id"), result.getInt("reimb_type_id"));
+//                reimb_added = new Reimb(result.getInt("reimb_id"), result.getDouble("reimb_amount"),
+//                        result.getString("reimb_submitted"), result.getString("reimb_resolved"),
+//                        result.getString("reimb_description"), result.getBlob("reimb_receipt"),
+//                        result.getInt("reimb_author"), result.getInt("reimb_resolver"));
+//                        //result.getInt("reimb_status_id"), result.getInt("reimb_type_id")
+
             }
             	return reimb_added;
         } catch (SQLException e) {
