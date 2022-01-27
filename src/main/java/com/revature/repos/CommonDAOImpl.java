@@ -84,16 +84,31 @@ public class CommonDAOImpl implements CommonDAO {
     public ArrayList<Users> viewAll(String queryType) {
         try (Connection conn = ConnectionUtil.getConnection()) {
             String sql;
+            PreparedStatement statement;
 
-//            if(queryType.equalsIgnoreCase("all")) {
+            if(queryType.equalsIgnoreCase("all")) {
                 sql = "SELECT * FROM ers_users " +
                         "INNER JOIN ers_user_roles ON ers_users.user_role_id = ers_user_roles.ers_user_role_id;";
-//            } else {
-//                sql = "SELECT * FROM ers_users " +
-//                        "INNER JOIN ers_user_roles ON ers_users.user_role_id = ers_user_roles.ers_user_role_id;";
-//            }
 
-            Statement statement = conn.createStatement();
+                statement = conn.prepareStatement(sql);
+            } else {
+                sql = "SELECT " +
+                        "DISTINCT ers_users.ers_username,ers_reimbursement.reimb_author, " +
+                        "ers_users.ers_email, ers_users.ers_firstname, ers_users.ers_lastname, ers_users" +
+                        ".ers_users_id, " +
+                        "ers_user_roles.ers_user_role " +
+                        "FROM ers_users " +
+                        "INNER JOIN ers_user_roles ON ers_users.user_role_id = ers_user_roles.ers_user_role_id " +
+                        "INNER JOIN ers_reimbursement ON ers_users.ers_users_id = ers_reimbursement.reimb_author " +
+                        "INNER JOIN ers_reimbursement_status ON ers_reimbursement.reimb_type_id = " +
+                        "ers_reimbursement_status.reimb_status_id " +
+                        "WHERE ers_reimbursement_status.reimb_status = ?; ";
+
+                statement = conn.prepareStatement(sql);
+                statement.setString(1, queryType);
+
+            }
+
             ResultSet result = statement.executeQuery(sql);
 
             ArrayList<Users> users = new ArrayList<>();

@@ -29,8 +29,9 @@ public class CommonDAOImplTest {
     @Test
     @DisplayName("Test when a manager would like to look at all of the employees' requests")
     void viewAllTestQueries(){
-        queryType = "PEN";
-        assertEquals(true,dao.viewAll(userID, queryType).size() == 0);
+        userID=1;
+        queryType = "ALL";
+        assertEquals(true,dao.viewAll(userID, queryType).size() > 0);
     }
 
 

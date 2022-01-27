@@ -28,7 +28,7 @@ public class LoginDAOImpl implements LoginDAO{
                 user.setLastName(result.getString("ers_lastname"));
                 user.setEmail(result.getString("ers_email"));
                 user.setSecret(result.getString("ers_password"));
-                user.setRoleID(result.getInt("user_role_id"));
+                //user.setRoleID(result.getInt("user_role_id"));
             }
             return user;
 
