@@ -1,5 +1,4 @@
 package com.revature.service;
-
 import com.revature.models.UserDTO;
 import com.revature.models.Users;
 import com.revature.repos.LoginDAO;
@@ -34,7 +33,7 @@ public class LoginServiceTest {
         assertNull(loginTest.login(testUser));
     }
     @Test
-    @DisplayName("Null is returned when password does not match password in DB")
+    @DisplayName("Null is returned when password does not match password in DB but user is in DB")
     public void testLoginFailBadPW() {
         Users user = new Users();
         user.setSecret("$argon2id$v=19$m=15360,t=2,p=1$dJPMlDO1PkHPDA9+Et1yVg$iMrA6hsJj2tmQzlrV0NgGjMJEyPSe0+fJUmmyhWhCno");
@@ -47,10 +46,29 @@ public class LoginServiceTest {
     @DisplayName("User logins in with correct username and password")
     public void testLoginSuccess() {
         Users user = new Users();
+        testUser.password = "password";
         user.setSecret("$argon2id$v=19$m=15360,t=2,p=1$dJPMlDO1PkHPDA9+Et1yVg$iMrA6hsJj2tmQzlrV0NgGjMJEyPSe0+fJUmmyhWhCno");
         Mockito.when(mockedDAO.login("agent")).thenReturn(user);
         assertNotNull(loginTest.login(testUser));
     }
+
+    @Test
+    @DisplayName("User submits no username, get null as a return")
+    public void testLoginNoUsername() {
+        Users user = new Users();
+        testUser.username = "";
+        assertNull(loginTest.login(testUser));
+    }
+
+    @Test
+    @DisplayName("User submits no password, get null as a return")
+    public void testLoginNoPassword() {
+        Users user = new Users();
+        testUser.password = "";
+        assertNull(loginTest.login(testUser));
+    }
+
+
 
 }
 

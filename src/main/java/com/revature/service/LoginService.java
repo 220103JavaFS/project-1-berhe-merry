@@ -29,7 +29,7 @@ public class LoginService {
      */
     public Users login(UserDTO user){
         try {
-            Validator.isValidSecret(user.username); //reusing...
+            Validator.isValidUserName(user.username);
             Validator.isValidSecret(user.password);
             Users userOut = dao.login(user.username);
             if (userOut != null) {

@@ -52,6 +52,13 @@ final class Validator {
         return true;
     }
 
+    public static boolean isValidUserName(String username) {
+        if(isEmpty(username)) {
+            throw new MyException("No username provided");
+        }
+        return true;
+    }
+
     public static boolean isValidType(String type) {
         if(type == null || type.trim()==""){
             throw new MyException("No reimbursement type provided");
