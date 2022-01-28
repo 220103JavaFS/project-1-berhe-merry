@@ -39,6 +39,7 @@ public class CommonController extends Controller {
             if (reimbs == null) {
                 ctx.status(400);
             } else {
+                ctx.json(reimbs);
                 ctx.status(200);
             }
         } else {

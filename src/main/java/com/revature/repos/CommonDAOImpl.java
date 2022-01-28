@@ -100,20 +100,20 @@ public class CommonDAOImpl implements CommonDAO {
                         "FROM ers_users " +
                         "INNER JOIN ers_user_roles ON ers_users.user_role_id = ers_user_roles.ers_user_role_id " +
                         "INNER JOIN ers_reimbursement ON ers_users.ers_users_id = ers_reimbursement.reimb_author " +
-                        "INNER JOIN ers_reimbursement_status ON ers_reimbursement.reimb_type_id = " +
+                        "INNER JOIN ers_reimbursement_status ON ers_reimbursement.reimb_status_id = " +
                         "ers_reimbursement_status.reimb_status_id " +
                         "WHERE ers_reimbursement_status.reimb_status = ?; ";
 
                 statement = conn.prepareStatement(sql);
-                statement.setString(1, queryType);
-
+                statement.setString(1, queryType.toUpperCase(Locale.ROOT));
             }
 
-            ResultSet result = statement.executeQuery(sql);
+            ResultSet result = statement.executeQuery();
 
             ArrayList<Users> users = new ArrayList<>();
-            Users u = new Users();
+            Users u;
             while(result.next()) {
+                u= new Users();
                 u.setUserID(result.getInt("ers_users_id"));
                 u.setUserName(result.getString("ers_username"));
                 u.setFirstName(result.getString("ers_firstname"));
