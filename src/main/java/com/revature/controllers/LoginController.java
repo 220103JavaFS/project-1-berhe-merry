@@ -7,6 +7,8 @@ import io.javalin.http.Handler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * First layer for when a user logs in
  */
@@ -27,7 +29,9 @@ public class LoginController extends Controller {
         } else {
             //log.info("Login is successful!");
             ctx.json(user_out); //test
-            ctx.req.getSession().setAttribute("Role", user_out.getRoleID());
+            HttpSession session = ctx.req.getSession();
+            session.setAttribute("Role", user_out.getRoleID());
+            session.setAttribute("UserID", user_out.getUserID());
             //can set other session attributes if needed...
             ctx.status(200);
         }

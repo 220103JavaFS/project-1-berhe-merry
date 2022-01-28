@@ -10,8 +10,8 @@ final class Validator {
     public Validator(){}
 
     private static boolean isEmpty(String input){
-        input = input.trim();
-        if(input == null || input.trim() == "") {
+        if(input == null) return true;
+        if(input.trim() == "") {
             return true;
         }
         return false;
@@ -60,7 +60,7 @@ final class Validator {
     }
 
     public static boolean isValidType(String type) {
-        if(type == null || type.trim()==""){
+        if(isEmpty(type)){
             throw new MyException("No reimbursement type provided");
         }
         Reimb_Types[] types = Reimb_Types.values();

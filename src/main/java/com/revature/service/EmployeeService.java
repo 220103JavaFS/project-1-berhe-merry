@@ -23,11 +23,9 @@ private  EmployeeDAO empDAO;
      * @return the Reimb if successfully added, else null
      */
     public Reimb addRequest(Reimb reimb){
-        //can use Validator
         try {
             Validator.isValidAmount(reimb.getAmount());
-            Validator.isValidUserId(reimb.getId());
-            //Validator.isValidType(reimb.getTypeID()); //TODO
+            Validator.isValidType(reimb.getTypeID());
             Reimb rr = empDAO.addRequest(reimb);
             if (rr == null) {
                 return null;

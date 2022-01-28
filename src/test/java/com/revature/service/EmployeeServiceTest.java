@@ -1,11 +1,7 @@
 package com.revature.service;
 
 import com.revature.models.Reimb;
-import com.revature.models.UserDTO;
-import com.revature.models.Users;
 import com.revature.repos.EmployeeDAO;
-import com.revature.repos.EmployeeDAOImpl;
-import com.revature.repos.LoginDAO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -30,15 +26,41 @@ public class EmployeeServiceTest {
     }
 @Test
     @DisplayName("Employee Test")
-    public void employeeFailur(){
+    public void employeeFailure(){
         Mockito.when(mockedDAO.addRequest(testReimb)).thenReturn(null);
         assertNull(employeeTest.addRequest(testReimb));
 }
     @Test
-    @DisplayName("Employee Test")
-    public void employeeSeccuss(){
+    @DisplayName("Employee Test Success")
+    public void employeeSuccess(){
+        testReimb.setAmount(400.02);
+        testReimb.setTypeID("Food");
         Mockito.when(mockedDAO.addRequest(testReimb)).thenReturn(new Reimb());
         assertNotNull(employeeTest.addRequest(testReimb));
+    }
+
+    @Test
+    @DisplayName("Employee fails to provide Reimb type")
+    public void EmployeeFailNoTypeProvided(){
+        testReimb.setAmount(400.02);
+        testReimb.setTypeID("");
+        assertNull(employeeTest.addRequest(testReimb));
+    }
+
+    @Test
+    @DisplayName("Employee fails to provide Reimb allowed type")
+    public void EmployeeFailBadTypeProvided(){
+        testReimb.setAmount(400.02);
+        testReimb.setTypeID("Parking");
+        assertNull(employeeTest.addRequest(testReimb));
+    }
+
+    @Test
+    @DisplayName("Employee fails to provide valid amount")
+    public void EmployeeFailBadAmount(){
+        testReimb.setAmount(0);
+        testReimb.setTypeID("Food");
+        assertNull(employeeTest.addRequest(testReimb));
     }
 
 }
