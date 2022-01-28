@@ -23,7 +23,7 @@ public class CommonDAOImplTest {
     void viewAllTestDENIED(){
         userID = 2;
         queryType = "DENIED";
-        assertEquals(true,dao.viewAll(userID, queryType).size() == 0);
+        assertEquals(true,dao.viewAll(userID, queryType).size() > 0);
     }
 
     @Test
@@ -37,7 +37,7 @@ public class CommonDAOImplTest {
     @Test
     @DisplayName("Test when a employee would like to look at all of their requests")
     void viewAllTestQueries(){
-        userID=1;
+        userID=2;
         queryType = "ALL";
         assertEquals(true,dao.viewAll(userID, queryType).size() > 0);
     }
