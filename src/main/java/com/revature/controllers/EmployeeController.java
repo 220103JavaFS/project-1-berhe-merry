@@ -21,10 +21,10 @@ public class EmployeeController extends Controller {
     private Handler addRequest = (ctx) -> {
         if(ctx.req.getSession(false)!=null) {
             Reimb reimb = ctx.bodyAsClass(Reimb.class);
-            reimb.setAuthor((int) ctx.req.getSession().getAttribute("userID"));
+            reimb.setAuthor((int) ctx.req.getSession().getAttribute("UserID"));
             reimb = service.addRequest(reimb);
             if(reimb == null) {
-                ctx.status(500);
+                ctx.status(400);
             } else {
                 ctx.status(201);
             }
