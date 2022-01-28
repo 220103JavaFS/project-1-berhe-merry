@@ -28,6 +28,7 @@ public class ManagerController extends Controller{
             if (reimb == null) {
                 ctx.status(400);
             } else {
+                ctx.json(reimb);
                 ctx.status(200);
             }
         } else {

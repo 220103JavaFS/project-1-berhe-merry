@@ -26,6 +26,7 @@ public class EmployeeController extends Controller {
             if(reimb == null) {
                 ctx.status(400);
             } else {
+                ctx.json(reimb);
                 ctx.status(201);
             }
         } else {
