@@ -26,6 +26,7 @@ public class LoginController extends Controller {
             ctx.status(401);
         } else {
             //log.info("Login is successful!");
+            ctx.json(user_out); //test
             ctx.req.getSession().setAttribute("Role", user_out.getRoleID());
             //can set other session attributes if needed...
             ctx.status(200);

@@ -25,4 +25,9 @@ public class LoginDAOImplTest {
         assertNull(loginDAO.login(username));
     }
 
+    @Test
+    @DisplayName("No username was provided")
+    void loginFailNoUsername(){
+        assertNull(loginDAO.login(null));
+    }
 }
