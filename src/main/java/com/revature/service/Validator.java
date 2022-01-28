@@ -40,10 +40,10 @@ final class Validator {
     }
 
     public static boolean isValidUserId(int userId) {
-        if(userId >= 0) {
-            throw new MyException("No userId provided");
+        if(userId > 0) {
+            return true;
         }
-        return true;
+        throw new MyException("No userId provided");
     }
     public static boolean isValidSecret(String secret) {
         if(isEmpty(secret)) {
@@ -72,6 +72,19 @@ final class Validator {
         }
         if(isInTypes) return true;
         else throw new MyException("Invalid reimbursement type provided");
+    }
+
+    public static boolean isValidEditType(String type) {
+        if(isEmpty(type)){
+            throw new MyException("No edit type provided");
+        }
+        Status_Types[] types = Status_Types.values();
+        for (Status_Types t: types) {
+            if(type.equalsIgnoreCase(t.toString())){
+                return true;
+            }
+        }
+        throw new MyException("Invalid edit type provided");
     }
 
     public static boolean isValidAmount(double amount) {

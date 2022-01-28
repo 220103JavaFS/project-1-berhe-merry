@@ -22,6 +22,7 @@ public class ManagerController extends Controller{
     private Handler editRequest = (ctx) -> {
         if(ctx.req.getSession(false)!=null) {
             EditTicketDTO editTicketDTO = ctx.bodyAsClass(EditTicketDTO.class);
+            editTicketDTO.resolverID = (int) ctx.req.getSession().getAttribute("UserID");
             Reimb reimb;
             reimb = service.editRequests(editTicketDTO);
             if (reimb == null) {
@@ -36,6 +37,6 @@ public class ManagerController extends Controller{
 
     @Override
     public void addRoutes(Javalin app) {
-        app.put("/edit/{status}", editRequest, Roles.MANAGER);
+        app.put("/edit", editRequest, Roles.MANAGER);
     }
 }

@@ -25,7 +25,7 @@ public class ManagerService {
     public Reimb editRequests(EditTicketDTO editTicketDTO){
         try {
             Validator.isValidUserId(editTicketDTO.reimbID);
-            //Validator.isValidType(editTicketDTO.status); //TODO
+            Validator.isValidEditType(editTicketDTO.status);
             Reimb edit = dao.editRequests(editTicketDTO);
             if (edit != null) {
                 return edit;
