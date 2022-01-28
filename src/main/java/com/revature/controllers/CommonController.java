@@ -19,7 +19,6 @@ public class CommonController extends Controller {
     private Logger log = LoggerFactory.getLogger(Controller.class);
     private CommonService service = new CommonService();
 
-    //TODO:should we use a ReimbDTO since Reimb does not have fields for the dates?
     /**
      * For an employee to view their past ticket, the request will need to contain their user ID, queryType (ALL,
      * PENDING, APPROVED, DENIED) and role (EMPLOYEE - for the AccessManager)
@@ -28,16 +27,17 @@ public class CommonController extends Controller {
     private Handler viewTickets = (ctx) -> {
         if(ctx.req.getSession(false)!=null) {
             TicketQueryDTO ticketQueryDTO = ctx.bodyAsClass(TicketQueryDTO.class);
-            ArrayList<Reimb> reimbs;
+            ArrayList<Reimb> reimbs = null;
+            String role = (String) ctx.req.getSession().getAttribute("Role");
 
-            if (ticketQueryDTO.role.equalsIgnoreCase("manager") && ticketQueryDTO.userID != -1) {
-                reimbs = service.viewEmployeeTickets(ticketQueryDTO);
+            if ((role.equalsIgnoreCase("manager") && ticketQueryDTO.userID != -1) || role.equalsIgnoreCase("employee")) {
+                reimbs = service.viewTickets(ticketQueryDTO, role);
             } else {
                 reimbs = service.viewTickets(ticketQueryDTO);
             }
 
             if (reimbs == null) {
-                ctx.status(500);
+                ctx.status(400);
             } else {
                 ctx.status(200);
             }

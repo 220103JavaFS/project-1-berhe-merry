@@ -12,7 +12,7 @@ public class CommonDAOImplTest {
     private String queryType;
 
     @Test
-    @DisplayName("Test when an employee would like to look at all of their requests")
+    @DisplayName("Test when an employee would like to look at all of their pending requests")
     void viewAllTestPENDING(){
         userID = 2;
         queryType = "PENDING";
@@ -27,7 +27,15 @@ public class CommonDAOImplTest {
     }
 
     @Test
-    @DisplayName("Test when a manager would like to look at all of the employees' requests")
+    @DisplayName("Test when an employee would like to look at all of their approved requests, but no denied available")
+    void viewAllTestApproved(){
+        userID = 2;
+        queryType = "APPROVED";
+        assertEquals(true,dao.viewAll(userID, queryType).size() == 0);
+    }
+
+    @Test
+    @DisplayName("Test when a employee would like to look at all of their requests")
     void viewAllTestQueries(){
         userID=1;
         queryType = "ALL";

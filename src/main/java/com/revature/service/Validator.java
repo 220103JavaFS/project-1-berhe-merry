@@ -87,6 +87,19 @@ final class Validator {
         throw new MyException("Invalid edit type provided");
     }
 
+    public static boolean isValidQueryType(String query){
+        if(isEmpty(query)){
+            throw new MyException("No query type provided");
+        }
+        Query_Types[] types = Query_Types.values();
+        for (Query_Types t: types) {
+            if(query.equalsIgnoreCase(t.toString())){
+                return true;
+            }
+        }
+        throw new MyException("Invalid query type provided");
+    }
+
     public static boolean isValidAmount(double amount) {
         if(amount > 0) {
             return true;
