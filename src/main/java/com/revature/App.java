@@ -13,9 +13,11 @@ public class App {
 
         app = Javalin.create( c -> {
             c.accessManager(new AccessManagerConfigure());
-        }).start();
+        });
 
         configure(new ManagerController(), new EmployeeController(), new CommonController(), new LoginController());
+        app.start(7000);
+
     }
 
     public static void configure(Controller... controllers) {
