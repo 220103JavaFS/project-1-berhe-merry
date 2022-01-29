@@ -30,8 +30,10 @@ public class ConnectionUtil {
 
         //String url = "jdbc:postgresql://javafs220103.c8iqszwihdjq.us-east-1.rds.amazonaws.com:5432/ersdb";
 
-        String username = System.getenv("sqlUserName");
-        String password = System.getenv("sqlPassword");
+        //String username = System.getenv("sqlUserName");
+        //String password = System.getenv("sqlPassword");
+        String username = "postgres";
+        String password = "password";
         return DriverManager.getConnection(url, username, password);
     }
 }
