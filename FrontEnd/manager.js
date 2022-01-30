@@ -132,47 +132,19 @@ async function getAllRequestsById(){
   }
 }
 
-// create rows and fill them with data from reimbursement request
+// Adding rows depend on number of records
 function populateRequests(requests){
+  reimbTable.innerHTML ="";
 
-    reimTable.innerHTML ="";
-
-    for(let request of requests){
-
-      let row = document.createElement("tr");
-
-      for(let data in request){
-        // We're skipping the information we don't need to show
-        if(data != "authorId" && data != "resolverId" && data != "receipt" && data != "statusId" && data != "typeId"){            
-          // data = Key
-          // request[data] = Value
-          let request_data = request[data];
-          // We need to format the dates that come from our request
-          if (data == "dateSubmitted" || data == "dateResolved") {       
-            request_data = formatDate(request_data);
-          }
-          let td = document.createElement("td");
-          td.innerText = request_data;
-          row.appendChild(td); 
-        }
-      }
-      reimTable.appendChild(row); 
+  for(let request of requests){
+    let row = document.createElement("tr");
+    for(let data in request){    
+        let request_data = request[data];
+        let td = document.createElement("td");
+        td.innerText = request_data;
+        row.appendChild(td); 
+     
     }
-}
-
-function formatDate(dateData){
-  // Our Result
-  var result = "";
-  // Ensures data is not null
-  if (dateData != null) {
-    // Creates new Date from data
-    var d = new Date(dateData);
-    // Uses ternary operator
-    var ampm = (d.getHours() >= 12) ? "PM" : "AM";    
-    // Creates our formatting
-    result = ((d.getMonth() + 1) + "/"  + d.getDate() + "/" + d.getFullYear() +
-      " " + ((d.getHours() + 11) % 12 + 1) + ":" + d.getMinutes() + " " + ampm);
+    reimbTable.appendChild(row); 
   }
-  // Returns the result if data is null string will be empty
-  return result;
 }
