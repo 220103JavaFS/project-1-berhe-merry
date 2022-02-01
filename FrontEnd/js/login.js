@@ -2,13 +2,14 @@
 let loginBtn = document.getElementById("loginBtn");
 let usernameBox = document.getElementById("username");
 let passwordBox = document.getElementById("password");
-let logoutBtn = document.getElementById("logoutBtn");
+//let logoutBtn = document.getElementById("logoutBtn");
 
 const url = "http://localhost:8080/";
-
+/*
 if (sessionStorage.getItem("userSession") == null){
   logoutBtn.innerHTML = "";
 }
+*/
 loginBtn.addEventListener("click", loginFunc);
 
 async function loginFunc(){
@@ -41,3 +42,26 @@ async function loginFunc(){
       }
 
 }
+
+
+function loginInputValidate(){  
+  var username=document.loginForm.username.value;  
+  var password=document.loginForm.password.value;  
+  var status=false;  
+  if(username.length<1){  
+  document.getElementById("usernameloc").innerHTML=  " Please enter your name";   status=false;  
+  }
+  else {
+    document.getElementById("usernameloc").innerHTML=  "";
+    status=true;
+  }
+  if(password.length<1){  
+  document.getElementById("passwordloc").innerHTML=  
+  "  Enter password";  
+  status=false;  
+  } 
+  else {
+    document.getElementById("passwordloc").innerHTML=  "";
+  }
+  return status;  
+  }  
