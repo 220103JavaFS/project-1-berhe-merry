@@ -1,67 +1,72 @@
 
 let loginBtn = document.getElementById("loginBtn");
-let usernameBox = document.getElementById("username");
-let passwordBox = document.getElementById("password");
-//let logoutBtn = document.getElementById("logoutBtn");
 
-const url = "http://localhost:8080/";
+const url = "http://localhost:7000/";
+//const url = "http://18.208.181.129:7000/";
 /*
 if (sessionStorage.getItem("userSession") == null){
   logoutBtn.innerHTML = "";
 }
 */
-loginBtn.addEventListener("click", loginFunc);
+loginBtn.addEventListener("click", loginInputValidate);
 
-async function loginFunc(){
+async function loginFunc(username, password){
+  
     let user = {
-        username: usernameBox.value,
-        password: passwordBox.value
-    }
+        username: username,
+        password: password
+    };
 
-    console.log("User and Pass:" + user.username + " | " + user.password);
+    console.log(user);
 
-    let response = await fetch(
-        url+"login",
-        {
-          method : "POST",
-          body : JSON.stringify(user),
-          credentials: "include"
-        }
-      );
+//     let response = await fetch(
+//         url+"login",
+//         {
+//           method : "POST",
+//           body : JSON.stringify(user),
+//           credentials: "include" //.......TODO
+//         }
+//       );
     
-      if(response.status===200){
-        let user_info = await response.json();
-        sessionStorage.setItem("userSession", user_info);
-        if (user_info.userRoleId == 1) {
-            window.location.replace(url + "employee.html");
-        } else {
-            window.location.replace(url + "manager.html");
-        }
-      }else{
-        console.log("Incorrect info "+response.status);
-      }
+//       if(response.status===200){
+//         let user_info = response.json();
+//         sessionStorage.setItem("userSession", user_info);
 
+          //}
+//         if (user_info.userRoleId == 1) {
+//             window.location.replace(url + "employee.html");
+//         } else {
+//             window.location.replace(url + "manager.html");
+//         }
+//       }else{
+//         console.log("Incorrect info "+response.status);
+//       }
+document.getElementById("loginForm").reset();
 }
 
 
 function loginInputValidate(){  
-  var username=document.loginForm.username.value;  
-  var password=document.loginForm.password.value;  
-  var status=false;  
-  if(username==" " || username.length<1 || (username.length>0 && username==" ")){  
-  document.getElementById("usernameloc").innerHTML=  " Please enter your name";   status=false;  
-  }
-  else {
-    document.getElementById("usernameloc").innerHTML=  "";
-    status=true;
-  }
-  if(password==" " || (password.length<1 && password=="")){  
-  document.getElementById("passwordloc").innerHTML=  
-  "  Enter password";  
-  status=false;  
+  const username = document.getElementById("username");
+  const password = document.getElementById("password");
+
+  if(username.checkValidity() && password.checkValidity()) {
+    loginFunc(username.value, password.value);
+    username.classList.remove("is-invalid");
+    password.classList.remove("is-invalid");
   } 
   else {
-    document.getElementById("passwordloc").innerHTML=  "";
+
+  if(!username.checkValidity()) {
+    username.classList.add("is-invalid");
   }
-  return status;  
-  }  
+  else{
+    username.classList.remove("is-invalid");
+  }
+
+  if(!password.checkValidity()){
+    password.classList.add("is-invalid");
+  }else {
+    password.classList.remove("is-invalid");
+  }
+}
+}  
