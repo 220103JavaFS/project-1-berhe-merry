@@ -16,9 +16,10 @@
             <h3>Reimbursement Request Form</h3>
         </div>
 
+        <form class="form-control" name="addForm" >
         <div class="px-5">
             <label class="form-label" for="amount">Amount</label>
-            <input class="form-control" type="text" id="amount" name="amount" required placeholder="$100.00">
+            <input class="form-control" type="number" id="amount" name="amount" min="0" required placeholder="$100.00"> <span id="amountloc"> </span>
         </div>
 
         <div class="mt-1 px-5">
@@ -33,25 +34,52 @@
             </div>
 
         <div class="mt-1 px-5">
-            <label class="form-label" for="description">Description</label>
-            <textarea class="form-control" id="description" name="description"  placeholder="Enter request description">
+           <label class="form-label" for="description">Description</label>
+            <textarea required class="form-control" id="description" name="description" placeholder="Enter request description" >
             </textarea>
         </div>
 
         <div class="mt-1 px-5">
             <label class="label-control" for="receipt">Receipt</label>
-            <input class="form-control" type="file" id="receipt" accept="image/*,.pdf">
+            <input class="form-control" type="file" id="receipt" accept="image/*,.pdf" requird onchange="return fileValidation()">
+    
         </div>
-
-       
-
+     
         <div class="text-center m-auto p-5">
-            <button class="btn btn-primary" id="submitRequest"> Submit </button>
+            <input type="submit" class="btn btn-primary" id="submitRequest" onsubmit="add()" value="Submit">
         </div>
+
+    </form>
     </div>
     
+   
+    
+        <script>
+            function fileValidation() {
+                var fileInput =
+                    document.getElementById('receipt');
+                
+                var filePath = fileInput.value;
+            
+                // Allowing file type
+                var allowedExtensions =
+                        /(\.pdf|\.jpg|\.jpeg|\.png|\.gif)$/i;
+                
+                if (!allowedExtensions.exec(filePath)) {
+                    alert('Invalid file type');
+                    fileInput.value = '';
+                    return false;
+                }
+                else
+                {
+                
+                   return true;
+                   
+                }
+            }
+        </script>
+    
 
-
-    <script></script>
+    <script>
 </body>
 </html>

@@ -15,19 +15,24 @@
         <div class="m-auto pt-5 px-5">
           <h4 class="fw-bolder">Welcome to the Employee Reimbursement System</h4>
         </div>
-      <!-- <form class="form-control"> -->
-        <div class="m-auto pt-4 px-5">
-          <!-- <label for="username" class="form-label">Username</label> -->
-          <input class="form-control" type="text" id="username" name="username" placeholder="Username">
+
+
+        <form  class="form-control" name="loginForm" action="#" onsubmit="return loginInputValidate()">  
+         
+          <div class="m-auto pt-4 px-5">
+             <input  class="form-control" type="text" name="username" placeholder="username"/>    <span id="usernameloc"> </span>
+             </div>
+             <div class="m-auto pt-2 px-5">
+        
+        <input  class="form-control" type="password" name="password" placeholder="password"/>  <span id="passwordloc"></span>
+        </div> 
+         
+          <div class="m-auto p-5">
+          <input  class="form-control" type="submit"   value="login"/>
         </div>
-        <div class="m-auto pt-2 px-5">
-          <!-- <label class="form-label" for="password">Password</label> -->
-          <input class="form-control" type="password" id="password" name="password" placeholder="Password">
-        </div>
-        <div class="m-auto p-5">
-          <input class="form-control btn btn-primary" type="submit" id="loginBtn" value="Login">
-        </div>
-    </div>
+          </form>
+
+</script>  
   <script src="../js/login.js"></script>
 </body>
 </html>
