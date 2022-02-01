@@ -48,14 +48,14 @@ function loginInputValidate(){
   var username=document.loginForm.username.value;  
   var password=document.loginForm.password.value;  
   var status=false;  
-  if(username.length<1){  
+  if(username==" " || username.length<1 || (username.length>0 && username==" ")){  
   document.getElementById("usernameloc").innerHTML=  " Please enter your name";   status=false;  
   }
   else {
     document.getElementById("usernameloc").innerHTML=  "";
     status=true;
   }
-  if(password.length<1){  
+  if(password==" " || (password.length<1 && password=="")){  
   document.getElementById("passwordloc").innerHTML=  
   "  Enter password";  
   status=false;  
