@@ -36,10 +36,6 @@ function validateForm(){
 }
 
 
-
-
-
-
  function fileValidation(receipt) {
     const filePath = receipt.value;            
     // Allowing file type

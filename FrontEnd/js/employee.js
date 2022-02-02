@@ -1,16 +1,16 @@
 const url = "http://localhost:8080/";
-if (sessionStorage.getItem("userSession") == null){
-  window.location.replace(url + "login.html");
-}
-else{
-    let user = sessionStorage.getItem("userSession");
-    if(user.userRoledId ==1){
-        window.location.replace(url + "employee.html");
-    }
-    else{
-      window.location.replace(url + "manager.html");
-  }
-}
+// if (sessionStorage.getItem("userSession") == null){
+//   window.location.replace(url + "login.html");
+// }
+// else{
+//     let user = sessionStorage.getItem("userSession");
+//     if(user.userRoledId ==1){
+//         window.location.replace(url + "employee.html");
+//     }
+//     else{
+//       window.location.replace(url + "manager.html");
+//   }
+// }
 let reimBtn = document.getElementById("getRequests");
 let submitBtn = document.getElementById("submitRequest");
 let logoutBtn = document.getElementById("logoutBtn");

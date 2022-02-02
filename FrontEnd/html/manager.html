@@ -39,18 +39,20 @@
                             </button>
                             </div>  
 
+                            <form name="filterForm" id="filterForm" novalidate>
                             <div class="ms-5 mt-3 mb-3">
-                                <input class="input-form" type="text" id="empID" name="empID" placeholder="Search by Employee ID">
+                                <input class="input-form" type="text" id="empID" name="empID" placeholder="Search by Employee ID" pattern="[1-9][0-9]*" required>
+                                <div class="invalid-feedback">Please input a valid Employee number</div>
                                 </div> 
-
+                            </form>
                                 <div class="ms-5 mt-3 mb-3">
-                                    <button type="button" class="btn btn-info">
+                                    <button type="submit" class="btn btn-info" id="filterBtn">
                                         Filter
                                     </button>
                                 </div>
 
                             <div class="ms-5 mt-5 pb-3">
-                                <button type="button" class="btn btn-secondary">
+                                <button type="submit" class="btn btn-secondary">
                                     Sign Out
                                 </button>
                             </div>
@@ -132,7 +134,7 @@
     </div>
 
   
-
-  <script src="manager.js"></script>  addd unwanted 'm' as mmanager.js to block the page to not redirected to login -->
+-->
+<script src="../js/manager.js"></script>
 </body>
 </html>
