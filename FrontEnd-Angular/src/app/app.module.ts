@@ -13,6 +13,7 @@ import { LoginComponent } from './components/login/login.component';
 import { EmployeeComponent } from './components/employee/employee.component';
 import { ManagerComponent } from './components/manager/manager.component';
 import { AddRequestComponent } from './components/add-request/add-request.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AddRequestComponent } from './components/add-request/add-request.compon
     LoginComponent,
     EmployeeComponent,
     ManagerComponent,
-    AddRequestComponent
+    AddRequestComponent,
+    PageNotFoundComponent
     
   ],
   imports: [
