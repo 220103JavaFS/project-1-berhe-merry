@@ -19,6 +19,7 @@
     "@angular/platform-browser-dynamic": "~13.2.0",
     "@angular/router": "~13.2.0",
     "@aws-amplify/ui-angular": "^1.0.35",
+    "angular-disable-browser-back-button": "^1.0.2",
     "aws-amplify": "^4.3.13",
     "aws4": "^1.11.0",
     "common-js": "^0.3.8",

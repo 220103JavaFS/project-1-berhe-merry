@@ -3,6 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
 
+
+import { BackButtonDisableModule } from 'angular-disable-browser-back-button'; // to disable browser back button
+
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -23,7 +27,11 @@ import { AddRequestComponent } from './components/add-request/add-request.compon
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    AmplifyUIAngularModule
+    AmplifyUIAngularModule,
+     BackButtonDisableModule.forRoot( {
+        preserveScrollPosition: true
+     })
+ 
   ],
   providers: [],
   bootstrap: [AppComponent]
