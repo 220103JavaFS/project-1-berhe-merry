@@ -30,24 +30,26 @@ export class AddRequestComponent implements OnInit {
     if((!amount.validity.patternMismatch && !amount.validity.valueMissing) && !type.validity.valueMissing) {
      amount.classList.remove("is-invalid");
      type.classList.remove("is-invalid");
+  
+
+     this.service.addReimbs(new Reimb(this.size+1, Number.parseFloat(amount.value),new Date().toDateString(),"", "","",this.userID,0,"pending",type.value));
+
 
      if(receipt.value){
        if(this.fileValidation(receipt)) {
-        this.service.addReimbs(new Reimb(this.size+1, Number.parseFloat(amount.value),new Date().toDateString(),"", "","",this.userID,0,"pending",type.value));
+        
+
         (<HTMLFormElement>document.getElementById("addRequest")).reset();
         receipt.classList.remove("is-invalid");
-        this.router.navigateByUrl("/employee");
        }
          receipt.classList.add("is-invalid");
      }
      else {
          //submit w/o image
-         this.service.addReimbs(new Reimb(this.size+1, Number.parseFloat(amount.value),new Date().toDateString(),"", "","",this.userID,0,"pending",type.value));
          (<HTMLFormElement>document.getElementById("addRequest")).reset();
         receipt.classList.remove("is-invalid");
-        this.router.navigateByUrl("/employee");
      }
-     
+     this.router.navigateByUrl("/employee");
     } else {
     if(amount.validity.patternMismatch || amount.validity.valueMissing){
         amount.classList.add("is-invalid");
