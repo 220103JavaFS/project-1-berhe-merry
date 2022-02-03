@@ -74,6 +74,36 @@
 
     
     <!--use bg-success and bg-danger for approved and denied-->
-    <script></script>
+    <script>
+
+async function viewRequest(){
+  let response = await fetch(url+"tickets", {
+    credentials:"include"
+  });
+
+  if(response.status===200){
+    let tickets = await response.json();
+    populateTickets(tickets);
+  } else{
+    console.log("There was an error getting your request.")
+  }
+   
+}
+
+function populateTickets(tickets){
+  ticketTable.innerHTML ="";
+  for(let ticket of tickets){
+    let row = document.createElement("tr");
+    for(let data in ticket){
+      let td = document.createElement("td");
+      td.innerText = home[data];
+      row.appendChild(td); 
+    }
+    ticketTable.appendChild(row);
+  }
+}
+
+
+    </script>
 </body>
 </html>
