@@ -1,6 +1,7 @@
 package com.revature;
 import com.revature.controllers.*;
 import io.javalin.Javalin;
+import io.javalin.http.staticfiles.Location;
 
 /**
  * Start of Javalin App
@@ -13,6 +14,9 @@ public class App {
 
         app = Javalin.create( c -> {
             c.accessManager(new AccessManagerConfigure());
+            c.addStaticFiles("src/../FrontEnd-Angular/src", Location.EXTERNAL);
+
+
         });
 
         configure(new ManagerController(), new EmployeeController(), new CommonController(), new LoginController());
